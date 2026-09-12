@@ -36,15 +36,59 @@ function AccordionItem({ title, content }) {
   )
 }
 
-export default function Footer() {
+export default function Footer({ onNavigate = () => {} }) {
   const { setSearchQuery } = useFilters()
 
   return (
     <footer className="bg-white border-t border-ink/10 mt-8">
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-8">
-        <p className="font-display text-lg text-maroon-dark tracking-wide mb-4">
-          Discover. Taste. Elevate.
-        </p>
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-6 pb-6 border-b border-ink/10">
+          <div>
+            <p className="font-display text-xl text-maroon font-bold tracking-wide">
+              Springs Mini Mart
+            </p>
+            <p className="text-xs text-ink/60 mt-0.5">Your neighborhood organic grocery & specialty boutique.</p>
+          </div>
+          <div className="flex flex-wrap gap-2 text-xs font-semibold">
+            <button
+              onClick={() => {
+                onNavigate('home')
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+              className="px-3 py-1.5 rounded-full bg-cream hover:bg-maroon hover:text-white transition-colors"
+            >
+              Shop Home
+            </button>
+            <button
+              onClick={() => {
+                onNavigate('deals')
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+              className="px-3 py-1.5 rounded-full bg-cream hover:bg-maroon hover:text-white transition-colors"
+            >
+              Flash Deals
+            </button>
+            <button
+              onClick={() => {
+                onNavigate('track')
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+              className="px-3 py-1.5 rounded-full bg-cream hover:bg-maroon hover:text-white transition-colors"
+            >
+              Track Order
+            </button>
+            <button
+              onClick={() => {
+                onNavigate('about')
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+              className="px-3 py-1.5 rounded-full bg-cream hover:bg-maroon hover:text-white transition-colors"
+            >
+              About & Stores
+            </button>
+          </div>
+        </div>
+
         <div className="text-sm text-ink/70 space-y-1 mb-6">
           <p>
             Call us at:{' '}

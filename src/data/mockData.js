@@ -17,6 +17,38 @@ export const mockCategories = [
 ]
 
 export const mockProducts = [
+  {
+    id: 'nano-banana',
+    name: 'Organic Nano Bananas (Mini Sweet Baby Bananas)',
+    category: 'Food Cupboard',
+    price: 380,
+    oldPrice: 480,
+    discountPercent: 21,
+    unit: '500g bunch',
+    image: '/images/nano-banana.jpg',
+    inStock: true,
+    featured: true,
+    rating: 4.9,
+    reviewsCount: 42,
+    description:
+      'Fresh, vibrant, certified organic Nano Bananas. Naturally sweet, bite-sized mini bananas packed with potassium and vitamins. Perfect for healthy snacking, lunchboxes, smoothies, and breakfast bowls.',
+  },
+  {
+    id: 'gemini-elixir',
+    name: 'Gemini Sparkling Banana & Citrus Elixir',
+    category: 'Drinks',
+    price: 450,
+    oldPrice: 600,
+    discountPercent: 25,
+    unit: '330ml can',
+    image: '/images/gemini-banana-drink.jpg',
+    inStock: true,
+    featured: true,
+    rating: 5.0,
+    reviewsCount: 88,
+    description:
+      'Refreshing luxury sparkling energy elixir infused with real organic banana puree, citrus botanicals, and zero artificial sugar. Powered by natural electrolytes to refresh your mind and energize your day.',
+  },
   { id: 'p1', name: 'Nescafe Gold Iced Coffee Sachets', category: 'Drinks', price: 890, oldPrice: 990, discountPercent: 10, unit: '10 sachets', image: 'https://picsum.photos/seed/springs-p1/400/400', inStock: true },
   { id: 'p2', name: 'Clinique Moisture Surge Gel Cream', category: 'Beauty', price: 6450, oldPrice: 9900, discountPercent: 35, unit: '50ml', image: 'https://picsum.photos/seed/springs-p2/400/400', inStock: true },
   { id: 'p3', name: 'Medicube Zero Pore Pad', category: 'K-Beauty', price: 3200, oldPrice: 4200, discountPercent: 24, unit: '70 pads', image: 'https://picsum.photos/seed/springs-p3/400/400', inStock: true },

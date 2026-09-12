@@ -7,18 +7,21 @@ const currency = new Intl.NumberFormat('en-PK', {
   maximumFractionDigits: 0,
 })
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, onSelect }) {
   const { addToCart, updateQty, getQty } = useCart()
   const qty = getQty(product.id)
   const hasDiscount = product.discountPercent > 0
 
   return (
-    <div className="flex flex-col rounded-card border border-ink/10 bg-white overflow-hidden">
-      <div className="relative aspect-square bg-cream">
+    <div className="flex flex-col rounded-card border border-ink/10 bg-white overflow-hidden hover:shadow-md transition-shadow">
+      <div
+        onClick={() => onSelect && onSelect(product)}
+        className="relative aspect-square bg-cream cursor-pointer group"
+      >
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           loading="lazy"
         />
         {hasDiscount && (
@@ -39,7 +42,10 @@ export default function ProductCard({ product }) {
         <p className="text-[10px] uppercase tracking-wide text-maroon/70 font-medium mb-0.5">
           {product.category}
         </p>
-        <h3 className="text-sm font-medium text-ink leading-snug line-clamp-2 mb-1">
+        <h3
+          onClick={() => onSelect && onSelect(product)}
+          className="text-sm font-medium text-ink leading-snug line-clamp-2 mb-1 cursor-pointer hover:text-maroon transition-colors"
+        >
           {product.name}
         </h3>
         <p className="text-xs text-ink/50 mb-2">{product.unit}</p>

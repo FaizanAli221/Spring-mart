@@ -9,7 +9,7 @@ const currency = new Intl.NumberFormat('en-PK', {
   maximumFractionDigits: 0,
 })
 
-export default function CartDrawer() {
+export default function CartDrawer({ onTrackOrder }) {
   const { items, isCartOpen, closeCart, updateQty, removeFromCart, cartTotal, clearCart } = useCart()
   const [step, setStep] = useState('cart') // 'cart' | 'checkout' | 'success'
   const [formData, setFormData] = useState({ name: '', phone: '', address: '' })
@@ -49,6 +49,16 @@ export default function CartDrawer() {
       const result = await createOrder(payload)
       setOrderResult(result)
       clearCart()
+
+      // Save order to localStorage for instant order tracking
+      try {
+        const prev = JSON.parse(localStorage.getItem('springs_orders') || '[]')
+        const updated = [result, ...prev.filter((o) => o.orderId !== result.orderId)].slice(0, 10)
+        localStorage.setItem('springs_orders', JSON.stringify(updated))
+      } catch {
+        // ignore storage errors
+      }
+
       setStep('success')
     } catch (err) {
       setOrderError(err.message || 'Failed to place order. Please try again.')
@@ -117,12 +127,24 @@ export default function CartDrawer() {
               </div>
             </div>
 
-            <button
-              onClick={handleClose}
-              className="w-full rounded-full bg-maroon text-white font-semibold py-3 hover:bg-maroon-dark transition-colors"
-            >
-              Continue Shopping
-            </button>
+            <div className="flex gap-2 w-full">
+              <button
+                onClick={() => {
+                  const id = orderResult.orderId
+                  handleClose()
+                  onTrackOrder && onTrackOrder(id)
+                }}
+                className="flex-1 rounded-full bg-maroon text-white font-semibold py-3 hover:bg-maroon-dark transition-colors text-sm shadow"
+              >
+                Track This Order
+              </button>
+              <button
+                onClick={handleClose}
+                className="px-5 rounded-full border border-ink/20 hover:border-maroon text-ink font-semibold py-3 transition-colors text-sm"
+              >
+                Close
+              </button>
+            </div>
           </div>
         ) : step === 'checkout' ? (
           <form onSubmit={handleCheckoutSubmit} className="flex-1 flex flex-col justify-between p-5 overflow-y-auto">

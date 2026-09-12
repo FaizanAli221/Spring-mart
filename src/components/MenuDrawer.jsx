@@ -1,22 +1,28 @@
-import { X, UtensilsCrossed, Croissant, Store, ChevronRight } from 'lucide-react'
+import { X, UtensilsCrossed, Croissant, Store, ChevronRight, Compass, Flame, Package, Info } from 'lucide-react'
 import { useFilters } from '../context/FilterContext'
 import { mockDrawerCategories } from '../data/mockData'
 
 const quickAccess = [
   { label: 'Cafe', icon: UtensilsCrossed },
   { label: 'Bakery', icon: Croissant },
-  { label: 'Stores', icon: Store },
+  { label: 'Stores', icon: Store, isPage: true, pageId: 'about' },
 ]
 
-export default function MenuDrawer() {
+export default function MenuDrawer({ onNavigate = () => {} }) {
   const { isMenuOpen, closeMenu, setActiveCategory } = useFilters()
 
   if (!isMenuOpen) return null
 
   const handleCategoryClick = (name) => {
+    onNavigate('home')
     setActiveCategory(name)
     closeMenu()
     document.getElementById('shop')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  const handlePageClick = (pageId) => {
+    onNavigate(pageId)
+    closeMenu()
   }
 
   return (
@@ -31,7 +37,7 @@ export default function MenuDrawer() {
       {/* Drawer panel */}
       <div className="relative w-[85%] max-w-sm bg-white h-full overflow-y-auto shadow-2xl animate-[slideIn_0.25s_ease-out]">
         <div className="flex items-center justify-between px-5 py-4 border-b border-ink/10 sticky top-0 bg-white z-10">
-          <h2 className="font-display font-semibold tracking-wide text-ink">Menu</h2>
+          <h2 className="font-display font-semibold tracking-wide text-ink">Menu & Explore</h2>
           <button
             onClick={closeMenu}
             aria-label="Close menu"
@@ -41,11 +47,48 @@ export default function MenuDrawer() {
           </button>
         </div>
 
+        {/* Primary Pages Navigation */}
+        <div className="p-4 space-y-1.5 border-b border-ink/10 bg-cream/30">
+          <button
+            onClick={() => handlePageClick('home')}
+            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-left text-sm font-semibold text-ink hover:bg-cream transition-colors"
+          >
+            <Compass size={18} className="text-maroon" />
+            <span>Shop Home</span>
+          </button>
+          <button
+            onClick={() => handlePageClick('deals')}
+            className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-left text-sm font-semibold text-ink hover:bg-cream transition-colors"
+          >
+            <div className="flex items-center gap-3">
+              <Flame size={18} className="text-red-600" />
+              <span>Flash Deals & Savings</span>
+            </div>
+            <span className="text-[10px] bg-red-600 text-white font-bold px-2 py-0.5 rounded-full uppercase">
+              Hot
+            </span>
+          </button>
+          <button
+            onClick={() => handlePageClick('track')}
+            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-left text-sm font-semibold text-ink hover:bg-cream transition-colors"
+          >
+            <Package size={18} className="text-maroon" />
+            <span>Track Order</span>
+          </button>
+          <button
+            onClick={() => handlePageClick('about')}
+            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-left text-sm font-semibold text-ink hover:bg-cream transition-colors"
+          >
+            <Info size={18} className="text-maroon" />
+            <span>About Us & Store Locations</span>
+          </button>
+        </div>
+
         <div className="grid grid-cols-3 gap-3 px-5 py-4 border-b border-ink/10">
-          {quickAccess.map(({ label, icon: Icon }) => (
+          {quickAccess.map(({ label, icon: Icon, isPage, pageId }) => (
             <button
               key={label}
-              onClick={() => handleCategoryClick(label)}
+              onClick={() => (isPage ? handlePageClick(pageId) : handleCategoryClick(label))}
               className="flex flex-col items-center justify-center gap-2 rounded-xl border border-ink/15 py-4 hover:border-maroon hover:text-maroon transition-colors"
             >
               <Icon size={24} strokeWidth={1.5} />

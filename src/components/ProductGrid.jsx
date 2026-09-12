@@ -1,7 +1,7 @@
 import ProductCard from './ProductCard'
 import { PackageSearch } from 'lucide-react'
 
-export default function ProductGrid({ products, loading }) {
+export default function ProductGrid({ products, loading, onSelect }) {
   if (loading) {
     return (
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
@@ -32,7 +32,7 @@ export default function ProductGrid({ products, loading }) {
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard key={product.id} product={product} onSelect={onSelect} />
       ))}
     </div>
   )

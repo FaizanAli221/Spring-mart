@@ -1,24 +1,29 @@
 export default function Hero() {
   return (
     <div className="px-4 md:px-6 pt-1 pb-4 max-w-6xl mx-auto">
-      <div className="relative rounded-card overflow-hidden h-52 md:h-72">
+      <div className="relative rounded-card overflow-hidden shadow-sm border border-ink/10 group">
         <img
-          src="https://picsum.photos/seed/springs-bakery-hero/1200/500"
-          alt="Freshly baked pastries, sandwiches, and a chocolate cake laid out on a table"
-          className="absolute inset-0 w-full h-full object-cover"
+          src="/images/gemini-banana-hero.jpg"
+          alt="Springs Mini Mart - Organic Nano Bananas & Gemini Sparkling Banana"
+          className="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover object-center group-hover:scale-[1.01] transition-transform duration-500"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/70 via-ink/30 to-transparent" />
-        <div className="relative h-full flex flex-col justify-center px-6 md:px-10 max-w-sm">
-          <p className="text-cream/80 text-xs tracking-[0.2em] mb-1">SPRINGS BAKERY</p>
-          <h1 className="font-display text-3xl md:text-4xl text-white font-medium leading-tight mb-4">
-            Baked with love, every morning
-          </h1>
-          <a
-            href="#shop"
-            className="inline-flex w-fit items-center rounded-full bg-cream text-maroon-dark px-5 py-2.5 text-sm font-semibold hover:bg-white transition-colors"
-          >
-            Shop the bakery
-          </a>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-4 md:p-6">
+          <div className="flex flex-wrap items-center justify-between w-full gap-2">
+            <div>
+              <span className="inline-block px-2.5 py-1 rounded-full bg-maroon text-white text-xs font-semibold tracking-wider uppercase mb-1">
+                Featured Exclusive
+              </span>
+              <p className="text-white font-display text-lg md:text-2xl font-semibold drop-shadow-sm">
+                Fresh Organic Nano Bananas & Gemini Sparkling Banana
+              </p>
+            </div>
+            <a
+              href="#shop"
+              className="inline-flex items-center rounded-full bg-white text-maroon font-semibold px-4 py-2 text-xs md:text-sm hover:bg-cream transition-colors shadow"
+            >
+              Shop Fresh Arrivals
+            </a>
+          </div>
         </div>
       </div>
     </div>

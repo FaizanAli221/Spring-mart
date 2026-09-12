@@ -1,6 +1,7 @@
-import { X, UtensilsCrossed, Croissant, Store, ChevronRight, Compass, Flame, Package, Info } from 'lucide-react'
+import { X, UtensilsCrossed, Croissant, Store, ChevronRight, Compass, Flame, Package, Info, Heart, Layers, History, HelpCircle } from 'lucide-react'
 import { useFilters } from '../context/FilterContext'
 import { mockDrawerCategories } from '../data/mockData'
+import { useWishlist } from '../context/WishlistContext'
 
 const quickAccess = [
   { label: 'Fresh Fruits', icon: UtensilsCrossed, category: 'Fresh Fruits & Veggies' },
@@ -10,6 +11,7 @@ const quickAccess = [
 
 export default function MenuDrawer({ onNavigate = () => {} }) {
   const { isMenuOpen, closeMenu, setActiveCategory } = useFilters()
+  const { wishlistCount } = useWishlist()
 
   if (!isMenuOpen) return null
 
@@ -37,7 +39,7 @@ export default function MenuDrawer({ onNavigate = () => {} }) {
       {/* Drawer panel */}
       <div className="relative w-[85%] max-w-sm bg-white h-full overflow-y-auto shadow-2xl animate-[slideIn_0.25s_ease-out]">
         <div className="flex items-center justify-between px-5 py-4 border-b border-ink/10 sticky top-0 bg-white z-10">
-          <h2 className="font-display font-semibold tracking-wide text-ink">Menu & Explore</h2>
+          <h2 className="font-display font-semibold tracking-wide text-ink">Navigation & Menu</h2>
           <button
             onClick={closeMenu}
             aria-label="Close menu"
@@ -48,38 +50,80 @@ export default function MenuDrawer({ onNavigate = () => {} }) {
         </div>
 
         {/* Primary Pages Navigation */}
-        <div className="p-4 space-y-1.5 border-b border-ink/10 bg-cream/30">
+        <div className="p-3.5 space-y-1 border-b border-ink/10 bg-cream/25">
           <button
             onClick={() => handlePageClick('home')}
-            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-left text-sm font-semibold text-ink hover:bg-cream transition-colors"
+            className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left text-sm font-semibold text-ink hover:bg-cream transition-colors"
           >
-            <Compass size={18} className="text-maroon" />
+            <Compass size={17} className="text-maroon" />
             <span>Shop Home</span>
           </button>
+
+          <button
+            onClick={() => handlePageClick('categories')}
+            className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left text-sm font-semibold text-ink hover:bg-cream transition-colors"
+          >
+            <Layers size={17} className="text-maroon" />
+            <span>All Departments (7)</span>
+          </button>
+
           <button
             onClick={() => handlePageClick('deals')}
-            className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-left text-sm font-semibold text-ink hover:bg-cream transition-colors"
+            className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left text-sm font-semibold text-ink hover:bg-cream transition-colors"
           >
             <div className="flex items-center gap-3">
-              <Flame size={18} className="text-red-600" />
+              <Flame size={17} className="text-red-600" />
               <span>Flash Deals & Savings</span>
             </div>
-            <span className="text-[10px] bg-red-600 text-white font-bold px-2 py-0.5 rounded-full uppercase">
+            <span className="text-[9px] bg-red-600 text-white font-bold px-2 py-0.5 rounded-full uppercase">
               Hot
             </span>
           </button>
+
+          <button
+            onClick={() => handlePageClick('orders')}
+            className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left text-sm font-semibold text-ink hover:bg-cream transition-colors"
+          >
+            <History size={17} className="text-maroon" />
+            <span>My Orders & History</span>
+          </button>
+
           <button
             onClick={() => handlePageClick('track')}
-            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-left text-sm font-semibold text-ink hover:bg-cream transition-colors"
+            className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left text-sm font-semibold text-ink hover:bg-cream transition-colors"
           >
-            <Package size={18} className="text-maroon" />
-            <span>Track Order</span>
+            <Package size={17} className="text-maroon" />
+            <span>Track Live Order</span>
           </button>
+
+          <button
+            onClick={() => handlePageClick('wishlist')}
+            className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left text-sm font-semibold text-ink hover:bg-cream transition-colors"
+          >
+            <div className="flex items-center gap-3">
+              <Heart size={17} className="text-red-600" />
+              <span>My Saved Wishlist</span>
+            </div>
+            {wishlistCount > 0 && (
+              <span className="text-[10px] bg-red-100 text-red-700 font-bold px-2 py-0.5 rounded-full">
+                {wishlistCount}
+              </span>
+            )}
+          </button>
+
+          <button
+            onClick={() => handlePageClick('help')}
+            className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left text-sm font-semibold text-ink hover:bg-cream transition-colors"
+          >
+            <HelpCircle size={17} className="text-maroon" />
+            <span>Help, Support & Delivery</span>
+          </button>
+
           <button
             onClick={() => handlePageClick('about')}
-            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-left text-sm font-semibold text-ink hover:bg-cream transition-colors"
+            className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left text-sm font-semibold text-ink hover:bg-cream transition-colors"
           >
-            <Info size={18} className="text-maroon" />
+            <Info size={17} className="text-maroon" />
             <span>About Us & Store Locations</span>
           </button>
         </div>

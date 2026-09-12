@@ -1,5 +1,6 @@
-import { Plus, Minus } from 'lucide-react'
+import { Plus, Minus, Heart } from 'lucide-react'
 import { useCart } from '../context/CartContext'
+import { useWishlist } from '../context/WishlistContext'
 
 const currency = new Intl.NumberFormat('en-PK', {
   style: 'currency',
@@ -9,8 +10,10 @@ const currency = new Intl.NumberFormat('en-PK', {
 
 export default function ProductCard({ product, onSelect }) {
   const { addToCart, updateQty, getQty } = useCart()
+  const { isWishlisted, toggleWishlist } = useWishlist()
   const qty = getQty(product.id)
   const hasDiscount = product.discountPercent > 0
+  const wishlisted = isWishlisted(product.id)
 
   return (
     <div className="flex flex-col rounded-card border border-ink/10 bg-white overflow-hidden hover:shadow-md transition-shadow">
@@ -24,6 +27,23 @@ export default function ProductCard({ product, onSelect }) {
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           loading="lazy"
         />
+
+        {/* Wishlist Button */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation()
+            toggleWishlist(product)
+          }}
+          aria-label={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+          className={`absolute top-2 right-2 z-10 p-1.5 rounded-full transition-all shadow-sm ${
+            wishlisted
+              ? 'bg-white text-red-600'
+              : 'bg-white/80 hover:bg-white text-ink/40 hover:text-red-500'
+          }`}
+        >
+          <Heart size={14} className={wishlisted ? 'fill-red-600' : ''} />
+        </button>
+
         {hasDiscount && (
           <span className="absolute top-2 left-2 bg-maroon text-white text-[10px] font-bold px-1.5 py-1 rounded-md">
             {product.discountPercent}% OFF

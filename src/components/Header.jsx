@@ -1,22 +1,27 @@
-import { Menu, ShoppingCart, Flame, Compass, Package, Info } from 'lucide-react'
+import { Menu, ShoppingCart, Flame, Compass, Package, Info, Heart, Layers, History, HelpCircle } from 'lucide-react'
 import { useFilters } from '../context/FilterContext'
 import { useCart } from '../context/CartContext'
+import { useWishlist } from '../context/WishlistContext'
 
 export default function Header({ currentPage = 'home', onNavigate = () => {} }) {
   const { openMenu } = useFilters()
   const { cartCount, openCart } = useCart()
+  const { wishlistCount } = useWishlist()
 
   const navLinks = [
-    { id: 'home', label: 'Shop Home', icon: Compass },
+    { id: 'home', label: 'Home', icon: Compass },
+    { id: 'categories', label: 'Departments', icon: Layers },
     { id: 'deals', label: 'Flash Deals', icon: Flame, badge: 'HOT' },
+    { id: 'orders', label: 'My Orders', icon: History },
     { id: 'track', label: 'Track Order', icon: Package },
-    { id: 'about', label: 'About & Stores', icon: Info },
+    { id: 'help', label: 'Help & Support', icon: HelpCircle },
+    { id: 'about', label: 'Stores', icon: Info },
   ]
 
   return (
     <header className="sticky top-0 z-30 bg-white border-b border-ink/10 shadow-sm">
-      <div className="flex items-center justify-between px-4 md:px-6 py-3 max-w-6xl mx-auto">
-        {/* Left: Mobile menu button */}
+      <div className="flex items-center justify-between px-4 md:px-6 py-2.5 max-w-7xl mx-auto">
+        {/* Left: Mobile menu button & Brand */}
         <div className="flex items-center gap-3">
           <button
             onClick={openMenu}
@@ -40,24 +45,24 @@ export default function Header({ currentPage = 'home', onNavigate = () => {} }) 
         </div>
 
         {/* Center: Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-1 bg-cream/70 p-1 rounded-full border border-ink/10">
+        <nav className="hidden lg:flex items-center gap-1 bg-cream/70 p-1 rounded-full border border-ink/10">
           {navLinks.map(({ id, label, icon: Icon, badge }) => {
             const isActive = currentPage === id
             return (
               <button
                 key={id}
                 onClick={() => onNavigate(id)}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
                   isActive
                     ? 'bg-maroon text-white shadow-sm'
                     : 'text-ink/70 hover:text-maroon hover:bg-white/80'
                 }`}
               >
-                <Icon size={14} className={isActive ? 'text-white' : 'text-maroon'} />
+                <Icon size={13} className={isActive ? 'text-white' : 'text-maroon'} />
                 <span>{label}</span>
                 {badge && (
                   <span
-                    className={`text-[9px] px-1 py-0.2 rounded font-bold uppercase ${
+                    className={`text-[8px] px-1 py-0.2 rounded font-bold uppercase ${
                       isActive ? 'bg-red-500 text-white' : 'bg-red-100 text-red-700'
                     }`}
                   >
@@ -69,19 +74,40 @@ export default function Header({ currentPage = 'home', onNavigate = () => {} }) 
           })}
         </nav>
 
-        {/* Right: Cart Button */}
-        <button
-          onClick={openCart}
-          aria-label="Open cart"
-          className="relative p-1.5 -mr-1.5 text-ink hover:text-maroon transition-colors"
-        >
-          <ShoppingCart size={24} strokeWidth={1.75} />
-          {cartCount > 0 && (
-            <span className="absolute -top-1 -right-1 flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-maroon text-white text-[10px] font-semibold">
-              {cartCount > 99 ? '99+' : cartCount}
-            </span>
-          )}
-        </button>
+        {/* Right: Wishlist & Cart Buttons */}
+        <div className="flex items-center gap-1">
+          {/* Wishlist Button */}
+          <button
+            onClick={() => onNavigate('wishlist')}
+            aria-label="View Wishlist"
+            className={`relative p-2 rounded-full transition-colors ${
+              currentPage === 'wishlist'
+                ? 'text-red-600 bg-red-50'
+                : 'text-ink/70 hover:text-red-600 hover:bg-cream'
+            }`}
+          >
+            <Heart size={21} strokeWidth={1.75} className={wishlistCount > 0 ? 'fill-red-500 text-red-500' : ''} />
+            {wishlistCount > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 flex items-center justify-center min-w-[17px] h-[17px] px-1 rounded-full bg-red-600 text-white text-[9px] font-bold shadow-sm">
+                {wishlistCount}
+              </span>
+            )}
+          </button>
+
+          {/* Cart Button */}
+          <button
+            onClick={openCart}
+            aria-label="Open cart"
+            className="relative p-2 rounded-full text-ink hover:text-maroon hover:bg-cream transition-colors"
+          >
+            <ShoppingCart size={22} strokeWidth={1.75} />
+            {cartCount > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 flex items-center justify-center min-w-[17px] h-[17px] px-1 rounded-full bg-maroon text-white text-[9px] font-bold shadow-sm">
+                {cartCount > 99 ? '99+' : cartCount}
+              </span>
+            )}
+          </button>
+        </div>
       </div>
     </header>
   )

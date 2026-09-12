@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
-import { X, Plus, Minus, Check, ShoppingBag, ShieldCheck, Truck, Sparkles } from 'lucide-react'
+import { X, Plus, Minus, Check, ShoppingBag, ShieldCheck, Truck, Sparkles, Heart } from 'lucide-react'
 import { useCart } from '../context/CartContext'
+import { useWishlist } from '../context/WishlistContext'
 
 const currency = new Intl.NumberFormat('en-PK', {
   style: 'currency',
@@ -10,6 +11,7 @@ const currency = new Intl.NumberFormat('en-PK', {
 
 export default function ProductDetailModal({ product, onClose }) {
   const { addToCart, updateQty, getQty, openCart } = useCart()
+  const { isWishlisted, toggleWishlist } = useWishlist()
   const [selectedQty, setSelectedQty] = useState(1)
   const [addedAnimation, setAddedAnimation] = useState(false)
 
@@ -26,6 +28,7 @@ export default function ProductDetailModal({ product, onClose }) {
   const currentCartQty = getQty(product.id)
   const hasDiscount = product.discountPercent > 0
   const savings = hasDiscount ? product.oldPrice - product.price : 0
+  const wishlisted = isWishlisted(product.id)
 
   const handleAdd = () => {
     addToCart(product, selectedQty)
@@ -42,6 +45,19 @@ export default function ProductDetailModal({ product, onClose }) {
       />
 
       <div className="relative bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden z-10 max-h-[90vh] flex flex-col md:flex-row animate-[scaleUp_0.2s_ease-out]">
+        {/* Wishlist Button */}
+        <button
+          onClick={() => toggleWishlist(product)}
+          aria-label={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+          className={`absolute top-3 right-12 z-20 p-2 rounded-full shadow-md transition-colors ${
+            wishlisted
+              ? 'bg-red-50 text-red-600'
+              : 'bg-white/80 hover:bg-white text-ink/50 hover:text-red-500'
+          }`}
+        >
+          <Heart size={18} className={wishlisted ? 'fill-red-600' : ''} />
+        </button>
+
         {/* Close Button */}
         <button
           onClick={onClose}

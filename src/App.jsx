@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { CartProvider } from './context/CartContext'
 import { FilterProvider, useFilters } from './context/FilterContext'
+import { WishlistProvider } from './context/WishlistContext'
 import { fetchCategories, fetchProducts } from './api/client'
 
 import AnnouncementBar from './components/AnnouncementBar'
@@ -12,20 +13,26 @@ import Footer from './components/Footer'
 import ProductDetailModal from './components/ProductDetailModal'
 
 import HomePage from './pages/HomePage'
+import CategoriesPage from './pages/CategoriesPage'
 import DealsPage from './pages/DealsPage'
+import OrdersPage from './pages/OrdersPage'
 import TrackOrderPage from './pages/TrackOrderPage'
+import WishlistPage from './pages/WishlistPage'
+import HelpContactPage from './pages/HelpContactPage'
 import AboutPage from './pages/AboutPage'
 
+const VALID_PAGES = ['home', 'categories', 'deals', 'orders', 'track', 'wishlist', 'help', 'about']
+
 function StoreApp() {
-  const { activeCategory, searchQuery } = useFilters()
+  const { activeCategory, setActiveCategory, searchQuery } = useFilters()
   const [categories, setCategories] = useState([])
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
 
-  // Navigation State: 'home' | 'deals' | 'track' | 'about'
+  // Navigation State: 'home' | 'categories' | 'deals' | 'orders' | 'track' | 'wishlist' | 'help' | 'about'
   const [currentPage, setCurrentPage] = useState(() => {
     const hash = window.location.hash.replace('#', '')
-    if (['home', 'deals', 'track', 'about'].includes(hash)) return hash
+    if (VALID_PAGES.includes(hash)) return hash
     return 'home'
   })
 
@@ -37,7 +44,7 @@ function StoreApp() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '')
-      if (['home', 'deals', 'track', 'about'].includes(hash)) {
+      if (VALID_PAGES.includes(hash)) {
         setCurrentPage(hash)
       }
     }
@@ -52,6 +59,14 @@ function StoreApp() {
       setTrackedOrderId(param)
     }
     window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const handleSelectDepartment = (categoryName) => {
+    setActiveCategory(categoryName)
+    navigateTo('home')
+    setTimeout(() => {
+      document.getElementById('shop')?.scrollIntoView({ behavior: 'smooth' })
+    }, 100)
   }
 
   // Data fetching
@@ -95,6 +110,15 @@ function StoreApp() {
         />
       )}
 
+      {currentPage === 'categories' && (
+        <CategoriesPage
+          categories={categories}
+          products={products}
+          onSelectCategory={handleSelectDepartment}
+          onSelectProduct={setSelectedProduct}
+        />
+      )}
+
       {currentPage === 'deals' && (
         <DealsPage
           products={products}
@@ -103,9 +127,25 @@ function StoreApp() {
         />
       )}
 
+      {currentPage === 'orders' && (
+        <OrdersPage
+          onTrackOrder={(id) => navigateTo('track', id)}
+          onShopNow={() => navigateTo('home')}
+        />
+      )}
+
       {currentPage === 'track' && (
         <TrackOrderPage initialOrderId={trackedOrderId} />
       )}
+
+      {currentPage === 'wishlist' && (
+        <WishlistPage
+          onSelectProduct={setSelectedProduct}
+          onShopNow={() => navigateTo('home')}
+        />
+      )}
+
+      {currentPage === 'help' && <HelpContactPage />}
 
       {currentPage === 'about' && <AboutPage />}
 
@@ -129,7 +169,9 @@ export default function App() {
   return (
     <FilterProvider>
       <CartProvider>
-        <StoreApp />
+        <WishlistProvider>
+          <StoreApp />
+        </WishlistProvider>
       </CartProvider>
     </FilterProvider>
   )

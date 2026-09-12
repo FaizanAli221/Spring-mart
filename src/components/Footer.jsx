@@ -61,6 +61,15 @@ export default function Footer({ onNavigate = () => {} }) {
             </button>
             <button
               onClick={() => {
+                onNavigate('categories')
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+              className="px-3 py-1.5 rounded-full bg-cream hover:bg-maroon hover:text-white transition-colors"
+            >
+              Departments
+            </button>
+            <button
+              onClick={() => {
                 onNavigate('deals')
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
@@ -70,12 +79,39 @@ export default function Footer({ onNavigate = () => {} }) {
             </button>
             <button
               onClick={() => {
+                onNavigate('orders')
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+              className="px-3 py-1.5 rounded-full bg-cream hover:bg-maroon hover:text-white transition-colors"
+            >
+              My Orders
+            </button>
+            <button
+              onClick={() => {
                 onNavigate('track')
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
               className="px-3 py-1.5 rounded-full bg-cream hover:bg-maroon hover:text-white transition-colors"
             >
               Track Order
+            </button>
+            <button
+              onClick={() => {
+                onNavigate('wishlist')
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+              className="px-3 py-1.5 rounded-full bg-cream hover:bg-maroon hover:text-white transition-colors"
+            >
+              Wishlist
+            </button>
+            <button
+              onClick={() => {
+                onNavigate('help')
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+              className="px-3 py-1.5 rounded-full bg-cream hover:bg-maroon hover:text-white transition-colors"
+            >
+              Help & Support
             </button>
             <button
               onClick={() => {

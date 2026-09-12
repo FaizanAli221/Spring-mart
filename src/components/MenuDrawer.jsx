@@ -3,8 +3,8 @@ import { useFilters } from '../context/FilterContext'
 import { mockDrawerCategories } from '../data/mockData'
 
 const quickAccess = [
-  { label: 'Cafe', icon: UtensilsCrossed },
-  { label: 'Bakery', icon: Croissant },
+  { label: 'Fresh Fruits', icon: UtensilsCrossed, category: 'Fresh Fruits & Veggies' },
+  { label: 'Bakery', icon: Croissant, category: 'Bakery & Pastries' },
   { label: 'Stores', icon: Store, isPage: true, pageId: 'about' },
 ]
 
@@ -85,10 +85,10 @@ export default function MenuDrawer({ onNavigate = () => {} }) {
         </div>
 
         <div className="grid grid-cols-3 gap-3 px-5 py-4 border-b border-ink/10">
-          {quickAccess.map(({ label, icon: Icon, isPage, pageId }) => (
+          {quickAccess.map(({ label, icon: Icon, isPage, pageId, category }) => (
             <button
               key={label}
-              onClick={() => (isPage ? handlePageClick(pageId) : handleCategoryClick(label))}
+              onClick={() => (isPage ? handlePageClick(pageId) : handleCategoryClick(category || label))}
               className="flex flex-col items-center justify-center gap-2 rounded-xl border border-ink/15 py-4 hover:border-maroon hover:text-maroon transition-colors"
             >
               <Icon size={24} strokeWidth={1.5} />
@@ -98,16 +98,11 @@ export default function MenuDrawer({ onNavigate = () => {} }) {
         </div>
 
         <button
-          onClick={() => handleCategoryClick('Home & Beyond')}
-          className="w-full text-left px-5 py-3.5 bg-maroon text-white font-medium border-b border-white/10"
-        >
-          Home & Beyond
-        </button>
-        <button
           onClick={() => handleCategoryClick('all')}
-          className="w-full text-left px-5 py-3.5 bg-maroon text-white font-medium"
+          className="w-full text-left px-5 py-3.5 bg-maroon text-white font-medium flex items-center justify-between"
         >
-          Trending Products
+          <span>All Departments & Products</span>
+          <span className="text-xs bg-white/20 px-2 py-0.5 rounded font-semibold">35 Items</span>
         </button>
 
         <nav className="divide-y divide-ink/10">

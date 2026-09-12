@@ -1,0 +1,27 @@
+{
+  "name": "springs-mini-mart",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "api:dev": "npm --prefix springs-mart-api run dev",
+    "api:start": "npm --prefix springs-mart-api start",
+    "install:api": "npm --prefix springs-mart-api install",
+    "install:all": "npm install && npm --prefix springs-mart-api install"
+  },
+  "dependencies": {
+    "lucide-react": "^0.383.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "vite": "^5.3.1"
+  }
+}

@@ -37,8 +37,8 @@ export default function DealsPage({ products, loading, onSelectProduct }) {
       {/* Deals Hero Banner */}
       <div className="relative rounded-2xl overflow-hidden mb-6 shadow-md border border-ink/10 group">
         <img
-          src="/images/gemini-deals-banner.jpg"
-          alt="Springs Mini Mart Flash Deals & Savings - Gemini and Nano Bananas"
+          src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1600&q=80"
+          alt="Springs Mini Mart Flash Deals & Weekly Super Savers"
           className="w-full h-52 sm:h-72 md:h-96 object-cover group-hover:scale-[1.01] transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-5 md:p-8 text-white">
@@ -54,7 +54,7 @@ export default function DealsPage({ products, loading, onSelectProduct }) {
             Unbeatable Grocery Deals & Savings
           </h1>
           <p className="text-white/80 text-xs md:text-sm mt-1 max-w-xl">
-            Save big on fresh organic Nano Bananas, Gemini Sparkling Elixirs, pantry staples, and bakery favourites.
+            Save big on fresh farm produce, imported pantry staples, gourmet chocolates, artisan bakery, and household care.
           </p>
 
           {/* Countdown Clock */}

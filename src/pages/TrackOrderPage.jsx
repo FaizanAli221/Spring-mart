@@ -58,21 +58,27 @@ export default function TrackOrderPage({ initialOrderId = '' }) {
         },
         items: [
           {
-            name: 'Organic Nano Bananas (Mini Sweet Baby Bananas)',
+            name: 'Farm Fresh Cavendish Bananas (Golden Ripe)',
             quantity: 2,
-            unitPrice: 380,
-            lineTotal: 760,
+            unitPrice: 240,
+            lineTotal: 480,
           },
           {
-            name: 'Gemini Sparkling Banana & Citrus Elixir',
+            name: 'Coca-Cola Original Taste Chilled Cans (Pack of 6)',
+            quantity: 1,
+            unitPrice: 480,
+            lineTotal: 480,
+          },
+          {
+            name: 'Organic Pure Whole Farm Milk',
             quantity: 2,
-            unitPrice: 450,
-            lineTotal: 900,
+            unitPrice: 320,
+            lineTotal: 640,
           },
         ],
-        subtotal: 1660,
+        subtotal: 1600,
         deliveryFee: 150,
-        total: 1810,
+        total: 1750,
       }
       setSearchedOrder(fallbackOrder)
     }

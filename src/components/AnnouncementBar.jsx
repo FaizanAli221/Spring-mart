@@ -6,8 +6,8 @@ export default function AnnouncementBar() {
   if (!visible) return null
 
   return (
-    <div className="relative bg-maroon-dark text-cream text-sm font-medium py-2 px-10 text-center">
-      <span>Flat 10% off your first order — every day essentials, delivered fresh.</span>
+    <div className="relative bg-maroon-dark text-cream text-xs sm:text-sm font-medium py-2 px-10 text-center">
+      <span>Use voucher code <strong className="bg-white/20 text-white px-2 py-0.5 rounded font-mono font-bold tracking-wider">WELCOME10</strong> for 10% OFF your first order · 30-Min Cold-Chain Delivery across Bahria Town, DHA & Gulberg</span>
       <button
         onClick={() => setVisible(false)}
         aria-label="Dismiss announcement"

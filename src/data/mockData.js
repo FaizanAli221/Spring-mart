@@ -6,13 +6,13 @@ export const mockCategories = [
     id: 'fresh-produce',
     name: 'Fresh Fruits & Veggies',
     discountLabel: 'FLAT 15% OFF',
-    image: '/images/nano-banana.jpg',
+    image: 'https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 'drinks',
     name: 'Drinks & Beverages',
     discountLabel: 'UP TO 25% OFF',
-    image: '/images/gemini-banana-drink.jpg',
+    image: 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 'bakery',
@@ -49,20 +49,20 @@ export const mockCategories = [
 export const mockProducts = [
   // 1. Fresh Fruits & Veggies
   {
-    id: 'nano-banana',
-    name: 'Organic Nano Bananas (Mini Sweet Baby Bananas)',
+    id: 'fp-banana',
+    name: 'Farm Fresh Cavendish Bananas (Golden Ripe)',
     category: 'Fresh Fruits & Veggies',
-    price: 380,
-    oldPrice: 480,
-    discountPercent: 21,
-    unit: '500g bunch',
-    image: '/images/nano-banana.jpg',
+    price: 240,
+    oldPrice: 280,
+    discountPercent: 14,
+    unit: '1 Dozen (approx 1.2kg)',
+    image: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=600&q=80',
     inStock: true,
     featured: true,
     rating: 4.9,
-    reviewsCount: 42,
+    reviewsCount: 64,
     description:
-      'Fresh, vibrant, certified organic Nano Bananas. Naturally sweet, bite-sized mini bananas packed with potassium and vitamins. Perfect for healthy snacking, lunchboxes, smoothies, and breakfast bowls.',
+      'Naturally ripened golden Cavendish bananas rich in dietary fiber, potassium, and quick energy. Hand-inspected for uniform ripeness and peel quality.',
   },
   {
     id: 'fp-apples',
@@ -127,20 +127,20 @@ export const mockProducts = [
 
   // 2. Drinks & Beverages
   {
-    id: 'gemini-elixir',
-    name: 'Gemini Sparkling Banana & Citrus Elixir',
+    id: 'dr-coca-cola',
+    name: 'Coca-Cola Original Taste Chilled Cans (Pack of 6)',
     category: 'Drinks & Beverages',
-    price: 450,
-    oldPrice: 600,
-    discountPercent: 25,
-    unit: '330ml can',
-    image: '/images/gemini-banana-drink.jpg',
+    price: 480,
+    oldPrice: 540,
+    discountPercent: 11,
+    unit: '6 x 250ml cans pack',
+    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=600&q=80',
     inStock: true,
     featured: true,
-    rating: 5.0,
-    reviewsCount: 88,
+    rating: 4.9,
+    reviewsCount: 118,
     description:
-      'Refreshing luxury sparkling energy elixir infused with real organic banana puree, citrus botanicals, and zero artificial sugar. Powered by natural electrolytes.',
+      'The classic, crisp refreshing taste of ice-cold Coca-Cola Original. Perfect companion for everyday meals, gatherings, and celebrations.',
   },
   {
     id: 'dr-nescafe',
@@ -566,7 +566,7 @@ export const mockProducts = [
     oldPrice: 780,
     discountPercent: 13,
     unit: '500ml spray',
-    image: 'https://images.unsplash.com/photo-1585421514284-efb74320798c?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?auto=format&fit=crop&w=600&q=80',
     inStock: true,
     rating: 4.8,
     reviewsCount: 44,
@@ -603,14 +603,14 @@ export const mockDrawerCategories = [
 ]
 
 export const popularSearches = [
-  'Nano Bananas',
-  'Gemini Elixir',
-  'Sourdough Bread',
+  'Cavendish Bananas',
+  'Coca-Cola',
+  'Artisan Sourdough',
   'Whole Milk',
   'Basmati Rice',
-  'Croissants',
+  'Butter Croissants',
   'Olive Oil',
   'Dark Chocolate',
-  'Pistachios',
+  'California Pistachios',
   'Tide Detergent',
 ]

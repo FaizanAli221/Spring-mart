@@ -15,7 +15,7 @@ const stores = [
     address: 'Block K, Main Boulevard, Gulberg III, Lahore',
     phone: '042-3575-4647',
     timings: '8:30 AM – 12:30 AM (7 Days a Week)',
-    features: ['Chilled Beverages & Gemini Drinks', 'Artisan Coffee Bar', 'Personal Shopper Service'],
+    features: ['Chilled Beverages & Imported Juices', 'Artisan Coffee Bar', 'Personal Shopper Service'],
   },
   {
     city: 'Islamabad',
@@ -23,7 +23,7 @@ const stores = [
     address: 'Shop 12-14, Block B, F-7 Markaz, Jinnah Super, Islamabad',
     phone: '051-2650-4647',
     timings: '9:00 AM – Midnight',
-    features: ['Organic Nano Banana Bar', 'Pantry Essentials', 'Doorstep Express Dispatch'],
+    features: ['Fresh Produce Department', 'Pantry Essentials', 'Doorstep Express Dispatch'],
   },
 ]
 
@@ -40,7 +40,7 @@ export default function AboutPage() {
             Discover. Taste. Elevate.
           </h1>
           <p className="text-white/85 text-sm md:text-base mt-3 leading-relaxed">
-            Springs Mini Mart is Pakistan’s boutique neighborhood grocery and specialty store. From our signature <strong>Organic Nano Bananas</strong> and <strong>Gemini Sparkling Elixirs</strong> to premium bakery and daily essentials, we bring farm-fresh quality directly to your table.
+            Springs Mini Mart is Pakistan’s premier boutique neighborhood supermarket. Sourcing farm-fresh produce, gourmet artisanal bakery, imported delicacies, and essential household brands with guaranteed 30-minute express delivery.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center md:justify-start gap-3">
             <a
@@ -64,8 +64,8 @@ export default function AboutPage() {
 
         <div className="w-40 h-40 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-md flex-shrink-0 border-2 border-white/20">
           <img
-            src="/images/nano-banana.jpg"
-            alt="Organic Nano Bananas Fresh at Springs"
+            src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=1200&q=80"
+            alt="Springs Mini Mart Flagship Supermarket Store"
             className="w-full h-full object-cover"
           />
         </div>

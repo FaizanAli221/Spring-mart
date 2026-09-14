@@ -31,7 +31,7 @@ export default function OrdersPage({ onTrackOrder = () => {}, onShopNow = () => 
         name: item.name,
         price: item.unitPrice || item.price || 0,
         unit: item.unit || '1 unit',
-        image: item.image || '/images/nano-banana.jpg',
+        image: item.image || 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80',
         category: 'Re-ordered',
       }
       addToCart(productObj, item.quantity || 1)
